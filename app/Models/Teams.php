@@ -20,7 +20,7 @@ class Teams extends Model
      */
     public function members()
     {
-        return $this->hasMany(TeamMembers::class);
+        return $this->hasMany(TeamMembers::class,'team_id');
     }
 
 
