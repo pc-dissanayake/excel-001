@@ -9,6 +9,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Models\User;
+
+
 
 class MembersRelationManager extends RelationManager
 {
@@ -19,8 +22,21 @@ class MembersRelationManager extends RelationManager
         return $form
             ->schema([
                 Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required(),
+                        ->relationship('user', 'name')
+                        ->getSearchResultsUsing(function (string $search) {
+                            return \App\Models\User::where('name', 'like', "%{$search}%")
+                                ->orWhere('email', 'like', "%{$search}%")
+                                ->limit(50)
+                                ->get()
+                                ->mapWithKeys(function ($user) {
+                                    return [$user->id => $user->name . ' (' . $user->email . ')'];
+                                })
+                                ->toArray();
+                        })
+                        ->getOptionLabelUsing(fn ($value): ?string => \App\Models\User::find($value)?->name . ' (' . \App\Models\User::find($value)?->email . ')')
+                        ->searchable()
+                        ->preload()
+                        ->required(),
                 //Forms\Components\TextInput::make('role')                    ->maxLength(255),
             ]);
     }
