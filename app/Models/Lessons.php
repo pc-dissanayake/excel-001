@@ -17,6 +17,7 @@ class Lessons extends Model
         'description',
         'location_id',
         'academic_id',
+        'status',
     ];
 
   
