@@ -33,8 +33,7 @@ class TeamResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('uuid')
-                    ->searchable(),
+             //   Tables\Columns\TextColumn::make('uuid')     ->searchable(),
                 Tables\Columns\TextColumn::make('team_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
