@@ -31,6 +31,13 @@ class Lessons extends Model
         return $this->belongsTo(Locations::class, 'location_id');
     }
 
+    public function schedule()
+    {
+        return $this->belongsTo(Schedules::class, 'schedule_id');
+    }
+
+    
+
     public function academic()
     {
         return $this->belongsTo(Academics::class, 'academic_id');
