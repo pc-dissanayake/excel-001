@@ -21,8 +21,7 @@ class MembersRelationManager extends RelationManager
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required(),
-                Forms\Components\TextInput::make('role')
-                    ->maxLength(255),
+                //Forms\Components\TextInput::make('role')                    ->maxLength(255),
             ]);
     }
 
@@ -32,7 +31,7 @@ class MembersRelationManager extends RelationManager
             ->recordTitleAttribute('user.name')
             ->columns([
                 Tables\Columns\TextColumn::make('user.name'),
-                Tables\Columns\TextColumn::make('role'),
+                //Tables\Columns\TextColumn::make('role'),
             ])
             ->filters([
                 //
