@@ -23,9 +23,18 @@ class AcademicsResource extends Resource
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required(),
-                Forms\Components\TextInput::make('salutation')
+                Forms\Components\Select::make('salutation')
+                    ->label('Salutation')
+                    ->options([
+                        'Prof.' => 'Prof.',
+                        'Dr.' => 'Dr.',
+                        'Mr.' => 'Mr.',
+                        'Mrs.' => 'Mrs.',
+                        'Ms.' => 'Ms.',
+                        'Miss' => 'Miss',
+                    ])
                     ->required()
-                    ->maxLength(255),
+                    ->searchable(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
