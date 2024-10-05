@@ -37,13 +37,7 @@ class UserResource extends Resource
                     ->dehydrated(fn (?string $state): bool => filled($state))
                     ->required(fn (string $context): bool => $context === 'edit')
                     ->visible(fn (string $context): bool => $context === 'edit'),
-            ])
-            ->mutateFormDataUsing(function (array $data, string $context) {
-                if ($context === 'create') {
-                    $data['password'] = Hash::make(Str::random(12));
-                }
-                return $data;
-            });
+            ]);
     }
 
     public static function table(Table $table): Table
