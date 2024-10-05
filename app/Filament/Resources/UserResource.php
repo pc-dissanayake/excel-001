@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
+use App\Notifications\UserInvitationNotification;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -79,6 +80,13 @@ class UserResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function afterCreate($record): void
+    {
+        $plainPassword = Str::random(12);
+        $record->update(['password' => Hash::make($plainPassword)]);
+        $record->notify(new UserInvitationNotification($plainPassword));
     }
 
     public static function getPages(): array
