@@ -30,7 +30,6 @@ class UserInvitationNotification extends Notification
                     ->line('You have been invited to join ' . config('app.name') . '.')
                     ->line('Your account has been created with the following details:')
                     ->line('Email: ' . $notifiable->email)
-                    ->line('Temporary Password: ' . $this->password)
                     ->action('Set Your Password', url('/password/reset'))
                     ->line('Please login and change your password as soon as possible.')
                     ->line('If you did not expect this invitation, no further action is required.');
