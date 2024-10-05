@@ -20,9 +20,6 @@ class AcademicsResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('uuid')
-                    ->disabled()
-                    ->dehydrated(false),
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required(),
