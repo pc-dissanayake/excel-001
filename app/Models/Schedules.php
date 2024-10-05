@@ -18,6 +18,7 @@ class Schedules extends Model
         'schedule_id',
         'start_time',
         'end_time',
+        'status', // 0=> undecided,3=>pending, 2=> scheduled, 5=>confirmed, 3=> postponed, 4=> cancelled, 7=> finished
     ];
 
     protected $casts = [
